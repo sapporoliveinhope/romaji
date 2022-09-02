@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ローマ字入力練習問題</title>
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        .my {
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 50px 0;
+        }
+
+        .color1 {
+            color: blue;
+        }
+
+        .input {
+            font-size: 30px;
+            text-align: center;
+            color: red;
+        }
+
+        .mb {
+            margin: 500px;
+        }
+
+        .setumei span {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my">
+        <h3>ローマ字入力練習問題(ver.20201008) <span id="qno"></span></h3>
+
+        <p>
+            入力した文字が合っていれば、Enterキー押下で次の問題が表示されます
+        </p>
+
+        <h1 class="my color1" id="mondai"></h1>
+
+        <h4 class="my" id="yomi"></h4>
+
+        <h4 class="my text-secondary" id="hint"></h4>
+
+        <div class="my">
+            <input type="text" id="input" class="input">
+        </div>
+
+        <button id="rnd" class="my">ランダム</button>
+
+        <p class="setumei">
+            小さい文字の入力は最初にエル「L」をつけます<br>
+            ぁ → <span>L</span>A<br>
+            ぃ → <span>L</span>I<br>
+            ぅ → <span>L</span>U<br>
+            ぇ → <span>L</span>E<br>
+            ぉ → <span>L</span>O<br>
+            っ → <span>L</span>TU<br>
+            ゃ → <span>L</span>YA<br>
+            ゅ → <span>L</span>YU<br>
+            ょ → <span>L</span>YO<br>
+            ゎ → <span>L</span>WA<br>
+        </p>
+
+        <div class="mb"></div>
+
+    </div>
+
+    <script>
+        const qarr = [
+            ["", "AIUEO", "あいうえお"],
+            ["", "KAKIKUKEKO", "かきくけこ"],
+            ["", "SASISUSESO", "さしすせそ"],
+            ["", "TATITUTETO", "たちつてと"],
+            ["", "NANINUNENO", "なにぬねの"],
+            ["", "HAHIHUHEHO", "はひふへほ"],
+            ["", "MAMIMUMEMO", "まみむめも"],
+            ["", "YAYUYO", "やゆよ"],
+            ["", "RARIRURERO", "らりるれろ"],
+            ["", "WAWONN", "わをん"],
+            ["", "GAGIGUGEGO", "がぎぐげご"],
+            ["", "ZAZIZUZEZO", "ざじずぜぞ"],
+            ["", "DADIDUDEDO", "だぢづでど"],
+            ["", "BABIBUBEBO", "ばびぶべぼ"],
+            ["", "PAPIPUPEPO", "ぱぴぷぺぽ"],
+            ["", "WA WI WE WO NN LTU", "わうぃうぇをんっ"],
+            ["", "NN LTU LA LI LU LE LO", "んっぁぃぅぇぉ"],
+            ["", "KYA KYI KYU KYE KYO", "きゃきぃきゅきぇきょ"],
+            ["", "SYA SYI SYU SYE SYO", "しゃしぃしゅしぇしょ"],
+            ["", "TYA TYI TYU TYE TYO THI THE", "ちゃちぃちゅちぇちょてぃてぇ"],
+            ["", "NYA NYI NYU NYE NYO", "にゃにぃにゅにぇにょ"],
+            ["", "HYA HYI HYU HYE HYO", "ひゃひぃひゅひぇひょ"],
+            ["", "FA FI FE FO", "ふぁふぃふぇふぉ"],
+            ["", "MYA MYI MYU MYE MYO", "みゃみぃみゅみぇみょ"],
+            ["", "RYA RYI RYU RYE RYO", "りゃりぃりゅりぇりょ"],
+            ["", "GYA GYI GYU GYE GYO", "ぎゃぎぃぎゅぎぇぎょ"],
+            ["", "ZYA ZYI ZYU ZYE ZYO", "じゃじぃじゅじぇじょ"],
+            ["", "DYA DYI DYU DYE DYO DHI DHE", "ぢゃぢぃぢゅぢぇぢょでぃでぇ"],
+            ["", "BYA BYI BYU BYE BYO", "びゃびぃびゅびぇびょ"],
+            ["", "PYA PYI PYU PYE PYO", "ぴゃぴぃぴゅぴぇぴょ"],
+            ["", "VA VI VU VE VO", "ゔぁゔぃゔゔぇゔぉ"],
+            ["", "KAPPA", "かっぱ"],
+            ["", "KIPPU", "きっぷ"],
+            ["", "GAKKI", "がっき"],
+            ["", "SAKKA", "さっか"],
+            ["", "BAKKU", "ばっく"],
+            ["", "BATTO", "バット"],
+            ["", "YOTTO", "ヨット"],
+            ["", "MATTO", "マット"],
+            ["", "BEDDO", "ベッド"],
+            ["あい", "AI", "愛"],
+            ["あう", "AU", "会う"],
+            ["いえ", "IE", "家"],
+            ["おい", "OI", "老い"],
+            ["おおい", "OOI", "多い"],
+            ["おおえ", "OOE", "大江"],
+            ["あか", "AKA", "赤"],
+            ["あき", "AKI", "秋"],
+            ["いか", "IKA", "イカ"],
+            ["くい", "KUI", "杭"],
+            ["えき", "EKI", "駅"],
+            ["いけ", "IKE", "池"],
+            ["きく", "KIKU", "菊"],
+            ["こえ", "KOE", "声"],
+            ["えかき", "EKAKI", "絵描き"],
+            ["さい", "SAI", "サイ"],
+            ["さけ", "SAKE", "酒"],
+            ["かさ", "KASA", "カサ"],
+            ["しお", "SIO", "塩"],
+            ["くさ", "KUSA", "草"],
+            ["くし", "KUSI", "串"],
+            ["すし", "SUSI", "寿司"],
+            ["すいか", "SUIKA", "スイカ"],
+            ["しかい", "SIKAI", "司会"],
+            ["あせ", "ASE", "汗"],
+            ["せき", "SEKI", "セキ"],
+            ["せかい", "SEKAI", "世界"],
+            ["うそ", "USO", "ウソ"],
+            ["そうこ", "SOUKO", "倉庫"],
+            ["そうさ", "SOUSA", "捜査"],
+            ["しきさい", "SIKISAI", "色彩"],
+            ["たい", "TAI", "鯛"],
+            ["たこ", "TAKO", "タコ"],
+            ["つき", "TUKI", "月"],
+            ["てき", "TEKI", "敵"],
+            ["こたえ", "KOTAE", "答え"],
+            ["てさき", "TESAKI", "手先"],
+            ["あしさき", "ASISAKI", "足先"],
+            ["あしあと", "ASIATO", "足跡"],
+            ["あつあつ", "ATUATU", "熱々"],
+            ["ちかてつ", "TIKATETU", "地下鉄"],
+            ["きたかた", "KITAKATA", "喜多方"],
+            ["かきかた", "KAKIKATA", "書き方"],
+            ["たきたて", "TAKITATE", "炊きたて"],
+            ["かたたたき", "KATATATAKI", "肩たたき"],
+            ["あたたかさ", "ATATAKASA", "暖かさ"],
+            ["おおどおり", "OODOORI", "大通り"],
+            ["なえ", "NAE", "苗"],
+            ["かに", "KANI", "カニ"],
+            ["ぬし", "NUSI", "主"],
+            ["ねこ", "NEKO", "猫"],
+            ["のうなし", "NOUNASI", "能なし"],
+            ["ねくたい", "NEKUTAI", "ネクタイ"],
+            ["にのあし", "NINOASI", "二の足"],
+            ["たねあかし", "TANEAKASI", "種明かし"],
+            ["はけ", "HAKE", "刷毛"],
+            ["ひかえ", "HIKAE", "控え"],
+            ["あさひ", "ASAHI", "朝日"],
+            ["ふつう", "HUTUU", "普通"],
+            ["ほへい", "HOHEI", "歩兵"],
+            ["ほうふ", "HOUHU", "豊富"],
+            ["へそのお", "HESONOO", "ヘソの緒"],
+            ["ほちきす", "HOTIKISU", "ホチキス"],
+            ["ひきかえす", "HIKIKAESU", "引き返す"],
+            ["ほうていしき", "HOUTEISIKI", "方程式"],
+            ["まき", "MAKI", "薪"],
+            ["みき", "MIKI", "幹"],
+            ["みため", "MITAME", "見た目"],
+            ["むすめ", "MUSUME", "娘"],
+            ["もくめ", "MOKUME", "木目"],
+            ["かまめし", "KAMAMESI", "釜飯"],
+            ["かせんしき", "KASENNSIKI", "河川敷"],
+            ["きしゅつ", "KISYUTU", "既出"],
+            ["げんいん", "GENNINN", "原因"],
+            ["しまうま", "SIMAUMA", "シマウマ"],
+            ["しゅじゅつ", "SYUJYUTU", "手術"],
+            ["ぜんいん", "ZENNINN", "全員"],
+            ["たまむし", "TAMAMUSI", "玉虫"],
+            ["たいいくかん", "TAIIKUKANN", "体育館"],
+            ["てんいん", "TENNINN", "店員"],
+            ["ひめます", "HIMEMASU", "ヒメマス"],
+            ["ふんいき", "FUNNIKI", "雰囲気"],
+            ["のみもの", "NOMIMONO", "飲み物"],
+            ["こや", "KOYA", "小屋"],
+            ["ゆか", "YUKA", "床"],
+            ["よなき", "YONAKI", "夜泣き"],
+            ["やおや", "YAOYA", "八百屋"],
+            ["よやく", "YOYAKU", "予約"],
+            ["ようやく", "YOUYAKU", "漸く"],
+            ["よゆう", "YOYUU", "余裕"],
+            ["ゆみや", "YUMIYA", "弓矢"],
+            ["やくよけ", "YAKUYOKE", "厄除け"],
+            ["ゆめもよう", "YUMEMOYOU", "夢模様"],
+            ["とら", "TORA", "虎"],
+            ["くり", "KURI", "栗"],
+            ["るす", "RUSU", "留守"],
+            ["れきし", "REKISI", "歴史"],
+            ["ろかた", "ROKATA", "路肩"],
+            ["あられ", "ARARE", "アラレ"],
+            ["らいふる", "RAIFURU", "ライフル"],
+            ["そらいろ", "SORAIRO", "空色"],
+            ["りさいくる", "RISAIKURU", "リサイクル"],
+            ["おわり", "OWARI", "終わり"],
+            ["わるもの", "WARUMONO", "悪者"],
+            ["うたをうたう", "UTAWOUTAU", "歌を唄う"],
+            ["みかん", "MIKANN", "蜜柑"],
+            ["もろはのつるぎ", "MOROHANOTURUGI", "諸刃の剣"],
+            ["わんこ", "WANNKO", "ワンコ"],
+            ["がまん", "GAMANN", "我慢"],
+            ["ぎんこう", "GINNKOU", "銀行"],
+            ["かぐ", "KAGU", "家具"],
+            ["げんいん", "GENNINN", "原因"],
+            ["ごりら", "GORIRA", "ゴリラ"],
+            ["ごうがい", "GOUGAI", "号外"],
+            ["ちぎれぐも", "TIGIREGUMO", "ちぎれ雲"],
+            ["ざる", "ZARU", "ザル"],
+            ["じこ", "JIKO", "事故"],
+            ["ちず", "TIZU", "地図"],
+            ["かぜ", "KAZE", "風邪"],
+            ["ぞう", "ZOU", "象"],
+            ["ぎんざ", "GUNNZA", "銀座"],
+            ["じぞく", "JIZOKU", "持続"],
+            ["じょおう", "JYOOU", "女王"],
+            ["しぶがき", "SIBUGAKI", "渋柿"],
+            ["じがじさん", "JIGAJISANN", "自画自賛"],
+            ["じてんしゃ", "JITENNSYA", "自転車"],
+            ["だいく", "DAIKU", "大工"],
+            ["ちぢむ", "TUDIMU", "縮む"],
+            ["かいづか", "KAIDUKA", "貝塚"],
+            ["でるもんて", "DERUMONNTE", "デルモンテ"],
+            ["どうろ", "DOURO", "道路"],
+            ["だんがい", "DANNGAI", "断崖"],
+            ["がいでん", "GAIDENN", "外伝"],
+            ["かぎたばこ", "KAGITABAKO", "嗅ぎ煙草"],
+            ["ばく", "BAKU", "バク"],
+            ["びん", "BINN", "瓶"],
+            ["ぶたい", "BUTAI", "舞台"],
+            ["べつ", "BETU", "別"],
+            ["ぼろ", "BORO", "ボロ"],
+            ["びだん", "BIDANN", "美談"],
+            ["びんぼう", "BINNBOU", "貧乏"],
+            ["かぎばり", "KAGIBARI", "鉤針"],
+            ["ぱせり", "PASERI", "パセリ"],
+            ["ぴん", "PINN", "ピン"],
+            ["ぷりん", "PURINN", "プリン"],
+            ["ぺんぎん", "PENNGINN", "ペンギン"],
+            ["ぽえむ", "POEMU", "ポエム"],
+            ["ぱんだ", "PANNDA", "パンダ"],
+            ["ぷろぽ", "PUROPO", "プロポ"],
+            ["ぺぷし", "PEPUSI", "ペプシ"],
+            ["ぽりばけつ", "PORIBAKETU", "ポリバケツ"],
+            ["はとが、とんだ。", "HATOGA、TONNDA。", "鳩が、飛んだ。"],
+            ["あめが、ふる。", "AMEGA、FURU。", "雨が、降る。"],
+            ["いぬが、ほえる。", "INUGA、HOERU。", "犬が、吠える。"],
+            ["きーぼーど", "KI-BO-DO", "キーボード"],
+            ["しーふーど", "SI-FU-DO", "シーフード"],
+            ["かーれーす", "KA-RE-SU", "カーレース"],
+            ["そらはあおい", "SORAHAAOI", "空は青い"],
+            ["なつはあつい", "NATUHAATUI", "夏は暑い"],
+            ["ちちをよぶ", "TITIWOYOBU", "父を呼ぶ"],
+            ["ごはんをたべた", "GOHANNWOTABETA", "ご飯を食べた"],
+            ["かっこ", "KAKKO", "カッコ"],
+            ["こっき", "KOKKI", "国旗"],
+            ["こっか", "KOKKA", "国家"],
+            ["とっき", "TOKKI", "突起"],
+            ["にっき", "NIKKI", "日記"],
+            ["あるみさっし", "ARUMI SASSI ", "アルミサッシ"],
+            ["ふっき", "HUKKI", "復帰"],
+            ["たっち", "TATTI", "タッチ"],
+            ["せっき", "SEKKI", "石器"],
+            ["もっと", "MOTTO", "もっと"],
+            ["きゃんぺーん", "KYANNPE-NN", "キャンペーン"],
+            ["きゅうきゅう", "KYUUKYUU", "救急"],
+            ["きょじん", "KYOZINN", "巨人"],
+            ["しゅりけん", "SYURIKENN", "手裏剣"],
+            ["しょうぼう", "SYOUBOU", "消防"],
+            ["おちゃ", "OTYA", "お茶"],
+            ["ちゅうい", "TYUUI", "注意"],
+            ["ちょきん", "TYOKINN", "貯金"],
+            ["にゃんこ", "NYANNKO", "ニャンコ"],
+            ["にゅういん", "NYUUINN", "入院"],
+            ["にょうぼう", "NYOUBOU", "女房"],
+            ["ひゃくえん", "HYAKUENN", "百円"],
+            ["ひゅーまにずむ", "HYU-MANIZUMU", "ヒューマニズム"],
+            ["ひょうろん", "HYOURONN", "評論"],
+            ["みゃんまー", "MYANNMA-", "ミャンマー"],
+            ["みゅーじかる", "MYU-ZIKARU", "ミュージカル"],
+            ["みょうが", "MYOUGA", "茗荷"],
+            ["りゃくご", "RYAKUGO", "略語"],
+            ["きょうりゅう", "KYOURYUU", "恐竜"],
+            ["りょうり", "RYOURI", "料理"],
+            ["ぎゃぐ", "GYAGU", "ギャグ"],
+            ["ぎゅうにゅう", "GYUUNYUU", "牛乳"],
+            ["ぎょうざ", "GYOUZA", "餃子"],
+            ["じゃいあん", "ZYAIANN", "ジャイアン"],
+            ["じゅしょう", "ZYUSYOU", "授賞"],
+            ["しみゅれーしょん", "SIMYURE-SYONN", "シミュレーション"],
+            ["じょしゅ", "ZYOSYU", "助手"],
+            ["びゃくや", "BYAKUYA", "白夜"],
+            ["おーしゃんびゅー", "O-SYANNBYU-", "オーシャンビュー"],
+            ["びょういん", "BYOUMA", "病院"],
+            ["ぴゅーま", "PYU-MA", "ピューマ"],
+            ["れもんてぃー", "REMONNTHI-", "レモンティー"],
+            ["はーどでぃすく", "HA-DODHISUKU", "ハードディスク"],
+            ["びゅーてぃふる", "BYU-THIFURU", "ビューティフル"],
+            ["てぃふぁにー", "THIFANI-", "ティファニー"],
+            ["でゅーくえりんとん", "DHU-KUERINNTONN", "デュークエリントン"],
+            ["どれみふぁ", "DOREMIFA", "ドレミファ"],
+            ["ふぃーるど", "FI-RUDO", "フィールド"],
+            ["ふぇーんげんしょう", "FE-NNGENNSYOU", "フェーン現象"],
+            ["きゃっち", "KYATTI", "キャッチ"],
+            ["ちゃっきー", "TYAKKI-", "チャッキー"],
+            ["ちぇっく", "CHEKKU", "チェック"],
+            ["しょっかー", "SYOKKA-", "ショッカー"],
+            ["じゃっき", "ZYAKKI", "惹起"],
+            ["じょっき", "ZYOKKI", "ジョッキ"],
+            ["でぃっくまーどっく", "DHIKKUMA-DOKKU", "ディックマードック"],
+            ["らいぶ・いん・ほーぷ", "RAIBU INN HO-PU", "ライブ・イン・ホープ"],
+            ["こうほうし", "KOUHOUSI", "広報誌"],
+            ["れいぞうこ", "REIZOUKO", "冷蔵庫"],
+            ["だいえっと", "DIETTO", "ダイエット"],
+            ["", "KO-HI-", "コーヒー"],
+            ["", "KA-RE-SA-", "カーレーサー"],
+            ["", "TE-PUREKO-DA-", "テープレコーダー"],
+            ["こうり", "KOURI", "小売り"],
+            ["こおり", "KOORI", "氷"],
+            ["おおかみ", "OOKAMI", "狼"],
+            ["おおう", "OOU", "覆う"],
+            ["おおきい", "OOKII", "大きい"],
+            ["はなぢ", "HANADI", "鼻血"],
+            ["ちぢむ", "TIDIMU", "縮む"],
+            ["じめん", "JIMENN", "地面"],
+            ["つづく", "TUDUKU", "続く"],
+            ["ちず", "TIZDU", "地図"],
+            ["かおをあらう", "KAOWOARAU", "顔を洗う"],
+            ["きづく", "KIDUKU", "気づく"],
+            ["きずく", "KIZUKU", "築く"],
+            ["きゅうきゅうしゃ", "KYUUKYUUSYA", "救急車"],
+            ["りょうしゅうしょ", "RYOUSYUUSYO", "領収書"],
+            ["こんぴゅーた", "KONNPYU-TA", "コンピュータ"],
+            ["ぎゅうにゅうびん", "GYUUNYUUBINN", "牛乳ビン"],
+            ["びょういん", "BYOUINN", "病院"],
+            ["きょうしゅうしょ", "KYOUSYUUJYO", "教習所"],
+            ["じょうきゅうしゃ", "JYOUKYUUSYA", "上級者"],
+        ];
+
+        // 練習
+        const mondai = document.getElementById("mondai");
+        const yomi = document.getElementById("yomi");
+        const input = document.getElementById("input");
+        const hint = document.getElementById("hint");
+        const qno = document.getElementById("qno");
+        const rnd = document.getElementById("rnd");
+
+        let qarr2 = [];
+        let len = qarr.length;
+        let count = 0;
+
+        function shuffle([...array]) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function syutudai() {
+            if (count > len - 1) {
+                alert("終了しました");
+                mondai.innerHTML = "";
+                yomi.innerHTML = "";
+                hint.innerHTML = "再開するには再読み込みしてください";
+                input.value = "";
+                input.readOnly = true;
+                return;
+            }
+
+            qno.textContent = count + 1;
+            input.style.color = "";
+            input.readOnly = false;
+
+            mondai.innerHTML = qarr2[count][2];
+            yomi.innerHTML = qarr2[count][0];
+            hint.innerHTML = qarr2[count][1];
+            input.value = "";
+            input.focus();
+            count += 1;
+        }
+
+        input.addEventListener("change", (e) => {
+            if (e.target.value === mondai.textContent) {
+                input.style.color = "green";
+                input.readOnly = true;
+                setTimeout(syutudai, 1000);
+            }
+        });
+
+        rnd.addEventListener("click", () => {
+            count = 0;
+            qarr2 = shuffle(qarr);
+            syutudai();
+        });
+
+        qarr2 = qarr;
+        syutudai();
+
+    </script>
+</body>
+
+</html>
