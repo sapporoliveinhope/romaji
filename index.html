@@ -28,13 +28,27 @@
             color: red;
         }
 
-        .mb {
-            margin: 500px;
+        .table {
+            width: 800px;
+            margin: 100px auto;
+            border-collapse: collapse;
         }
 
-        .setumei span {
-            color: red;
-            font-weight: bold;
+        .table td {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .color2 {
+            background-color: lightyellow;
+        }
+
+        .color3 {
+            background-color: coral;
+        }
+
+        .color4 {
+            background-color: lavender;
         }
     </style>
 </head>
@@ -59,21 +73,193 @@
 
         <button id="rnd" class="my">ランダム</button>
 
-        <p class="setumei">
-            小さい文字の入力は最初にエル「L」をつけます<br>
-            ぁ → <span>L</span>A<br>
-            ぃ → <span>L</span>I<br>
-            ぅ → <span>L</span>U<br>
-            ぇ → <span>L</span>E<br>
-            ぉ → <span>L</span>O<br>
-            っ → <span>L</span>TU<br>
-            ゃ → <span>L</span>YA<br>
-            ゅ → <span>L</span>YU<br>
-            ょ → <span>L</span>YO<br>
-            ゎ → <span>L</span>WA<br>
-        </p>
+        <table class="table">
+            <caption>ローマ字入力かな対応表</caption>
+            <tbody>
+                <tr>
+                    <td class="color2">あ<br>A</td>
+                    <td class="color2">い<br>I</td>
+                    <td class="color2">う<br>U</td>
+                    <td class="color2">え<br>E</td>
+                    <td class="color2">お<br>O</td>
+                    <td class="color4">きゃ<br>KYA</td>
+                    <td class="color4">きぃ<br>KYI</td>
+                    <td class="color4">きゅ<br>KYU</td>
+                    <td class="color4">きぇ<br>KYE</td>
+                    <td class="color4">きょ<br>KYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">か<br>KA</td>
+                    <td class="color2">き<br>KI</td>
+                    <td class="color2">く<br>KU</td>
+                    <td class="color2">け<br>KE</td>
+                    <td class="color2">こ<br>KO</td>
+                    <td class="color4">ちゃ<br>CHA</td>
+                    <td class="color4">てぃ<br>THI</td>
+                    <td class="color4">ちゅ<br>CHU</td>
+                    <td class="color4">てぇ<br>THE</td>
+                    <td class="color4">ちょ<br>CHO</td>
+                </tr>
+                <tr>
+                    <td class="color2">さ<br>SA</td>
+                    <td class="color2">し<br>SI</td>
+                    <td class="color2">す<br>SU</td>
+                    <td class="color2">せ<br>SE</td>
+                    <td class="color2">そ<br>SO</td>
+                    <td class="color4">にゃ<br>NYA</td>
+                    <td class="color4">にぃ<br>NYI</td>
+                    <td class="color4">にゅ<br>NYU</td>
+                    <td class="color4">にぇ<br>NYE</td>
+                    <td class="color4">にょ<br>NYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">た<br>TA</td>
+                    <td class="color2">ち<br>TI</td>
+                    <td class="color2">つ<br>TU</td>
+                    <td class="color2">て<br>TE</td>
+                    <td class="color2">と<br>TO</td>
+                    <td class="color4">ひゃ<br>HYA</td>
+                    <td class="color4">ひぃ<br>HYI</td>
+                    <td class="color4">ひゅ<br>HYU</td>
+                    <td class="color4">ひぇ<br>HYE</td>
+                    <td class="color4">ひょ<br>HYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">な<br>NA</td>
+                    <td class="color2">に<br>NI</td>
+                    <td class="color2">ぬ<br>NU</td>
+                    <td class="color2">ね<br>NE</td>
+                    <td class="color2">の<br>NO</td>
+                    <td class="color4">みゃ<br>MYA</td>
+                    <td class="color4">みぃ<br>MYI</td>
+                    <td class="color4">みゅ<br>MYU</td>
+                    <td class="color4">みぇ<br>MYE</td>
+                    <td class="color4">みょ<br>MYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">は<br>HA</td>
+                    <td class="color2">ひ<br>HI</td>
+                    <td class="color2">ふ<br>FU</td>
+                    <td class="color2">へ<br>HE</td>
+                    <td class="color2">ほ<br>HO</td>
+                    <td class="color4">りゃ<br>RYA</td>
+                    <td class="color4">りぃ<br>RYI</td>
+                    <td class="color4">りゅ<br>RYU</td>
+                    <td class="color4">りぇ<br>RYE</td>
+                    <td class="color4">りょ<br>RYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">ま<br>MA</td>
+                    <td class="color2">み<br>MI</td>
+                    <td class="color2">む<br>MU</td>
+                    <td class="color2">め<br>ME</td>
+                    <td class="color2">も<br>MO</td>
+                    <td class="color4">ぎゃ<br>GYA</td>
+                    <td class="color4">ぎぃ<br>GYI</td>
+                    <td class="color4">ぎゅ<br>GYU</td>
+                    <td class="color4">ぎぇ<br>GYE</td>
+                    <td class="color4">ぎょ<br>GYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">や<br>YA</td>
+                    <td class="color2">　</td>
+                    <td class="color2">ゆ<br>YU</td>
+                    <td class="color2">　</td>
+                    <td class="color2">よ<br>YO</td>
+                    <td class="color4">ぢゃ<br>DYA</td>
+                    <td class="color4">ぢぃ<br>DYI</td>
+                    <td class="color4">ぢゅ<br>DYU</td>
+                    <td class="color4">ぢぇ<br>DYE</td>
+                    <td class="color4">ぢょ<br>DYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">ら<br>RA</td>
+                    <td class="color2">り<br>RI</td>
+                    <td class="color2">る<br>RU</td>
+                    <td class="color2">れ<br>RE</td>
+                    <td class="color2">ろ<br>RO</td>
+                    <td class="color4">びゃ<br>BYA</td>
+                    <td class="color4">びぃ<br>BYI</td>
+                    <td class="color4">びゅ<br>BYU</td>
+                    <td class="color4">びぇ<br>BYE</td>
+                    <td class="color4">びょ<br>BYO</td>
+                </tr>
+                <tr>
+                    <td class="color2">わ<br>WA</td>
+                    <td class="color2">　</td>
+                    <td class="color2">を<br>WO</td>
+                    <td class="color2">　</td>
+                    <td class="color2">ん<br>NN</td>
+                    <td class="color4">でゃ<br>DHA</td>
+                    <td class="color4">でぃ<br>DHI</td>
+                    <td class="color4">でゅ<br>DHU</td>
+                    <td class="color4">でぇ<br>DHE</td>
+                    <td class="color4">でょ<br>DHO</td>
+                </tr>
+                <tr>
+                    <td class="color3">が<br>GA</td>
+                    <td class="color3">ぎ<br>GI</td>
+                    <td class="color3">ぐ<br>GU</td>
+                    <td class="color3">げ<br>GE</td>
+                    <td class="color3">ご<br>GO</td>
+                    <td class="color4">ぴゃ<br>PYA</td>
+                    <td class="color4">ぴぃ<br>PYI</td>
+                    <td class="color4">ぴゅ<br>PYU</td>
+                    <td class="color4">ぴぇ<br>PYE</td>
+                    <td class="color4">ぴょ<br>PYO</td>
+                </tr>
+                <tr>
+                    <td class="color3">ざ<br>ZA</td>
+                    <td class="color3">じ<br>ZI</td>
+                    <td class="color3">ず<br>ZU</td>
+                    <td class="color3">ぜ<br>ZE</td>
+                    <td class="color3">ぞ<br>ZO</td>
+                    <td class="color4">うぃ<br>WI</td>
+                    <td class="color4">うぇ<br>WE</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                </tr>
+                <tr>
+                    <td class="color3">だ<br>DA</td>
+                    <td class="color3">ぢ<br>DI</td>
+                    <td class="color3">づ<br>DU</td>
+                    <td class="color3">で<br>DE</td>
+                    <td class="color3">ど<br>DO</td>
+                    <td class="color4">ぁ<br>LA</td>
+                    <td class="color4">ぃ<br>LI</td>
+                    <td class="color4">ぅ<br>LU</td>
+                    <td class="color4">ぇ<br>LE</td>
+                    <td class="color4">ぉ<br>LO</td>
+                </tr>
+                <tr>
+                    <td class="color3">ば<br>BA</td>
+                    <td class="color3">び<br>BI</td>
+                    <td class="color3">ぶ<br>BU</td>
+                    <td class="color3">べ<br>BE</td>
+                    <td class="color3">ぼ<br>BO</td>
+                    <td class="color4">っ<br>LTU</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                </tr>
+                <tr>
+                    <td class="color3">ぱ<br>PA</td>
+                    <td class="color3">ぴ<br>PI</td>
+                    <td class="color3">ぷ<br>PU</td>
+                    <td class="color3">ぺ<br>PE</td>
+                    <td class="color3">ぽ<br>PO</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                    <td class="color4">　</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <div class="mb"></div>
+
 
     </div>
 
