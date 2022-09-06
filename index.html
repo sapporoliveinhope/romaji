@@ -65,7 +65,8 @@
 
         <h4 class="my" id="yomi"></h4>
 
-        <h4 class="my text-secondary" id="hint"></h4>
+        <button id="hint_btn">ヒント</button>
+        <h4 class="my text-secondary" id="hint" style="display: none;"></h4>
 
         <div class="my">
             <input type="text" id="input" class="input">
@@ -559,6 +560,7 @@
         const mondai = document.getElementById("mondai");
         const yomi = document.getElementById("yomi");
         const input = document.getElementById("input");
+        const hint_btn = document.getElementById("hint_btn");
         const hint = document.getElementById("hint");
         const qno = document.getElementById("qno");
         const rnd = document.getElementById("rnd");
@@ -576,6 +578,8 @@
         }
 
         function syutudai() {
+            hint.style.display = "none"
+
             if (count > len - 1) {
                 alert("終了しました");
                 mondai.innerHTML = "";
@@ -611,6 +615,10 @@
             qarr2 = shuffle(qarr);
             syutudai();
         });
+
+        hint_btn.addEventListener("click", () => {
+            hint.style.display = "block"
+        })
 
         qarr2 = qarr;
         syutudai();
