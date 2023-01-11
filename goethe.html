@@ -205,19 +205,25 @@
             input.focus()
         }
 
-        input.addEventListener('keyup', () => {
+        input.addEventListener('keydown', () => {
             let v = input.value
             if (genzai === v) {
-                if (index === len - 1) {
-                    index = 0
-                } else {
-                    index++
-                }
-                genzai = arr[index]
-                mondai.innerHTML = genzai
-                mode = false
-                input.value = ""
+                setTimeout(() => {
+                    if (index === len - 1) {
+                        index = 0
+                    } else {
+                        index++
+                    }
+                    mode = false
+                    genzai = arr[index]
+                    mondai.innerHTML = genzai
+                    input.value = ""
+                }, 1000)
             }
+        })
+
+        input.addEventListener('keyup', () => {
+            let v = input.value
             if (!mode) {
                 mondai.innerHTML = genzai
                 if (genzai.startsWith(v)) {
