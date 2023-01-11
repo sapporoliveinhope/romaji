@@ -194,14 +194,14 @@
         const input = document.getElementById("input")
         const rand_btn = document.getElementById("rand_btn")
 
-        let len, index, genzai
-        let mode = false
+        let len, index, genzai, mode
 
         function init() {
             len = arr.length
             index = Math.floor(Math.random() * len)
             genzai = arr[index]
             mondai.innerHTML = genzai
+            mode = false
             input.focus()
         }
 
@@ -215,6 +215,7 @@
                 }
                 genzai = arr[index]
                 mondai.innerHTML = genzai
+                mode = false
                 input.value = ""
             }
             if (!mode) {
