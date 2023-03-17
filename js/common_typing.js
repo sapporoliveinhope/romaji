@@ -58,6 +58,10 @@ function score_update() {
 }
 
 input.addEventListener('keydown', () => {
+    if (completed) {
+        return
+    }
+
     let v = input.value
     // 全部入力していたら1秒間に何文字入力できたかを表示して次の問題に行く
     if (genzai === v) {
@@ -69,8 +73,12 @@ input.addEventListener('keydown', () => {
 })
 
 input.addEventListener('keyup', () => {
+    if (completed) {
+        return
+    }
+
     let v = input.value
-    if (!completed && !mode) {
+    if (!mode) {
         mondai.innerHTML = genzai
         if (genzai.startsWith(v)) {
             mondai.innerHTML = genzai.replace(v, `<span>${v}</span>`)
@@ -88,6 +96,10 @@ input.addEventListener('compositionend', () => {
 })
 
 rand_btn.addEventListener('click', () => {
+    if (completed) {
+        return
+    }
+
     init()
 })
 
