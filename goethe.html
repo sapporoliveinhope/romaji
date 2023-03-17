@@ -233,12 +233,12 @@
             completed = true
             const elapsedTime = Math.floor((Date.now() - startTime) / 1000)
             const moji = genzai.length
-            const score = (moji / elapsedTime).toFixed(2)
+            const score = moji / elapsedTime
             if (score > best_score) {
                 best_score = score
-                best.innerHTML = best_score
+                best.innerHTML = best_score.toFixed(2)
             }
-            mondai.innerHTML = `結果は、${score}(文字/秒)でした。次の問題に行きます。`
+            mondai.innerHTML = `結果は、${score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
         }
 
         input.addEventListener('keydown', () => {
