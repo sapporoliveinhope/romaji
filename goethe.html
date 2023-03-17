@@ -55,7 +55,7 @@
         <button id="rand_btn">違う問題</button>
 
         <p style="text-align: right;">
-            ベストスコア <span id="best">0</span>
+            ベストスコア：<span id="best">?</span>
         </p>
 
     </div>
@@ -102,7 +102,7 @@
             "あの人が私を愛してから、自分が自分にとってどれほど価値あるものになったことだろう。",
             "初恋が唯一の恋愛だ、といわれるのは至言である。というのは、第二の恋愛では、また第二の恋愛によって、恋愛の最高の意味が失われるからである。",
             "女は決して自分の自然な姿を見せない。なぜならば女は、自然から生みつけられたままでもきっと人から好かれるものだ、といういうふうに考えることのできる男ほどのうぬぼれがないからである。",
-            "女性を力強く守ることのできる者だけが、女性の愛願を得るに値する。",
+            "女性を力強く守ることのできる者だけが、女性の愛顧を得るに値する。",
             "自分を買いかぶらない者は、本人が信じているよりもはるかに優れている。",
             "何をなすべきか、いかになすべきか、をのみ考えていたら、何もしないうちにどれだけ多くの歳月がたってしまうことだろう。",
             "いつかは目標に通じる歩みを一歩一歩と運んでいくのでは足りない。その一歩一歩が目標なのだし、一歩そのものが価値あるものでなければならないよ。",
@@ -193,94 +193,8 @@
             "自分の一生の終わりを初めと結びつけることのできる人は最も幸福である。",
             "前進をしない人は、後退をしているのだ。",
         ]
-
-
-        const mondai = document.getElementById("mondai")
-        const input = document.getElementById("input")
-        const rand_btn = document.getElementById("rand_btn")
-        const best = document.getElementById("best")
-
-        let len, index, genzai, mode, startTime, completed
-        let best_score = 0
-
-        function init() {
-            completed = false
-            len = arr.length
-            index = Math.floor(Math.random() * len)
-            genzai = arr[index]
-            mondai.innerHTML = genzai
-            mode = false
-            startTime = Date.now()
-            input.focus()
-        }
-
-        function next() {
-            completed = false
-            if (index === len - 1) {
-                index = 0
-            } else {
-                index++
-            }
-            genzai = arr[index]
-            mondai.innerHTML = genzai
-            mode = false
-            startTime = Date.now()
-            input.value = ""
-            input.focus()
-        }
-
-        function score_update() {
-            completed = true
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000)
-            const moji = genzai.length
-            const score = moji / elapsedTime
-            if (score > best_score) {
-                best_score = score
-                best.innerHTML = best_score.toFixed(2)
-            }
-            mondai.innerHTML = `結果は、${score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
-        }
-
-        input.addEventListener('keydown', () => {
-            let v = input.value
-            // 全部入力していたら1秒間に何文字入力できたかを表示して次の問題に行く
-            if (genzai === v) {
-                score_update()
-                setTimeout(() => {
-                    next()
-                }, 5000)
-            }
-        })
-
-        input.addEventListener('keyup', () => {
-            let v = input.value
-            if (!completed && !mode) {
-                mondai.innerHTML = genzai
-                if (genzai.startsWith(v)) {
-                    mondai.innerHTML = genzai.replace(v, `<span>${v}</span>`)
-                }
-            }
-        })
-
-        // compositionstart イベントは、 IME などのテキスト変換システムが新しい変換セッションを開始した時に発生します
-        input.addEventListener('compositionstart', () => {
-            mode = true
-        })
-
-        input.addEventListener('compositionend', () => {
-            mode = false
-        })
-
-        rand_btn.addEventListener('click', () => {
-            init()
-        })
-
-        // 初回読み込み
-        window.addEventListener('DOMContentLoaded', () => {
-            init()
-        })
-
     </script>
+    <script src="./js/common_typing.js"></script>
 </body>
 
 </html>
