@@ -6,35 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゲーテの名言入力練習</title>
-    <style>
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        .my {
-            margin: 30px 0;
-        }
-
-        .color1 {
-            color: blue;
-        }
-
-        #mondai span {
-            color: red;
-        }
-
-        .input {
-            width: 100%;
-            font-size: 20px;
-            color: red;
-            padding: 10px;
-        }
-
-        a {
-            color: blue;
-        }
-    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -46,7 +19,9 @@
             <a href="./">ローマ字入力練習に戻る</a>
         </p>
 
-        <h2 class="my color1" id="mondai"></h2>
+        <blockquote>
+            <p id="mondai"></p>
+        </blockquote>
 
         <div class="my">
             <input type="text" id="input" class="input">
@@ -55,7 +30,8 @@
         <button id="rand_btn">違う問題</button>
 
         <p style="text-align: right;">
-            ベストスコア：<span id="best">?</span>
+            ベストスコア：<span id="best">?</span><br>
+            スコア：<span id="score">?</span>
         </p>
 
     </div>

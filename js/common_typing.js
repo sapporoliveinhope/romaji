@@ -2,6 +2,7 @@ const mondai = document.getElementById("mondai")
 const input = document.getElementById("input")
 const rand_btn = document.getElementById("rand_btn")
 const best = document.getElementById("best")
+const score = document.getElementById("score")
 
 let len, index, genzai, mode, startTime, completed
 let best_score = 0
@@ -32,29 +33,39 @@ function next() {
     input.focus()
 }
 
+function level_check(score) {
+    level = "初心者(10級)"
+    if (score >= 3.00) {
+        level = "プロ(初段)"
+    } else if (score >= 2.00) {
+        level = "習熟(1級)"
+    } else if (score >= 1.00 && score < 2.00) {
+        level = "実務(3級)"
+    } else if (score >= 0.66 && score < 1.00) {
+        level = "実用(5級)"
+    } else if (score >= 0.33 && score < 0.66) {
+        level = "初級者(7級)"
+    }
+
+    return level
+}
+
 function score_update() {
     completed = true
     const elapsedTime = Math.floor((Date.now() - startTime) / 1000)
     const moji = genzai.length
-    const score = moji / elapsedTime
-    if (score > best_score) {
-        best_score = score
-        level = "初心者(10級)"
-        if (score >= 3.00) {
-            level = "プロ(初段)"
-        } else if (score >= 2.00) {
-            level = "習熟(1級)"
-        } else if (score >= 1.00 && score < 2.00) {
-            level = "実務(3級)"
-        } else if (score >= 0.66 && score < 1.00) {
-            level = "実用(5級)"
-        } else if (score >= 0.33 && score < 0.66) {
-            level = "初級者(7級)"
-        }
+    const now_score = moji / elapsedTime
 
-        best.innerHTML = `${best_score.toFixed(2)} ${level}レベル`
+    if (now_score > best_score) {
+        best_score = now_score
+        const level = level_check(now_score)
+        best.innerHTML = `${now_score.toFixed(2)} ${level}レベル`
     }
-    mondai.innerHTML = `結果は、${score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
+
+    const level = level_check(now_score)
+    score.innerHTML = `${now_score.toFixed(2)} ${level}レベル`
+
+    mondai.innerHTML = `結果は、${now_score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
 }
 
 input.addEventListener('keydown', () => {
