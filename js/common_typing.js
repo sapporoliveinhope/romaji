@@ -15,6 +15,8 @@ function init() {
     mondai.innerHTML = genzai
     mode = false
     startTime = Date.now()
+    input.value = ""
+    document.body.style.background = "white"
     input.focus()
 }
 
@@ -34,17 +36,38 @@ function next() {
 }
 
 function level_check(score) {
-    level = "初心者(10級)"
-    if (score >= 3.00) {
-        level = "プロ(初段)"
-    } else if (score >= 2.00) {
-        level = "習熟(1級)"
-    } else if (score >= 1.00 && score < 2.00) {
-        level = "実務(3級)"
-    } else if (score >= 0.66 && score < 1.00) {
-        level = "実用(5級)"
-    } else if (score >= 0.33 && score < 0.66) {
-        level = "初級者(7級)"
+    level = "10級"
+
+    if (score >= 5.00) {
+        level = "6段(最高段位)"
+    } else if (score >= 4.5 && score < 5.0) {
+        level = "5段"
+    } else if (score >= 4.0 && score < 4.5) {
+        level = "4段"
+    } else if (score >= 3.5 && score < 4.0) {
+        level = "3段"
+    } else if (score >= 3.0 && score < 3.5) {
+        level = "2段"
+    } else if (score >= 2.5 && score < 3.0) {
+        level = "初段"
+    } else if (score >= 2.0 && score < 2.5) {
+        level = "1級"
+    } else if (score >= 1.5 && score < 2.0) {
+        level = "2級"
+    } else if (score >= 1.0 && score < 1.5) {
+        level = "3級"
+    } else if (score >= 0.8 && score < 1.0) {
+        level = "4級"
+    } else if (score >= 0.6 && score < 0.8) {
+        level = "5級"
+    } else if (score >= 0.4 && score < 0.6) {
+        level = "6級"
+    } else if (score >= 0.3 && score < 0.4) {
+        level = "7級"
+    } else if (score >= 0.2 && score < 0.3) {
+        level = "8級"
+    } else if (score >= 0.1 && score < 0.2) {
+        level = "9級"
     }
 
     return level
@@ -65,7 +88,7 @@ function score_update() {
     const level = level_check(now_score)
     score.innerHTML = `${now_score.toFixed(2)} ${level}レベル`
 
-    mondai.innerHTML = `結果は、${now_score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
+    mondai.innerHTML = `結果は【${level}】${now_score.toFixed(2)}(文字/秒)でした。次の問題に行きます。`
 }
 
 input.addEventListener('keydown', () => {
@@ -92,7 +115,10 @@ input.addEventListener('keyup', () => {
     if (!mode) {
         mondai.innerHTML = genzai
         if (genzai.startsWith(v)) {
+            document.body.style.background = "white"
             mondai.innerHTML = genzai.replace(v, `<span>${v}</span>`)
+        } else {
+            document.body.style.background = "red"
         }
     }
 })
