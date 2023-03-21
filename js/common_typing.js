@@ -3,6 +3,7 @@ const input = document.getElementById("input")
 const rand_btn = document.getElementById("rand_btn")
 const best = document.getElementById("best")
 const score = document.getElementById("score")
+const body = document.body
 
 let len, index, genzai, mode, startTime, completed
 let best_score = 0
@@ -16,7 +17,7 @@ function init() {
     mode = false
     startTime = Date.now()
     input.value = ""
-    document.body.style.background = "white"
+    body.style.backgroundImage = `url("./img/23583045.png")`
     input.focus()
 }
 
@@ -115,10 +116,10 @@ input.addEventListener('keyup', () => {
     if (!mode) {
         mondai.innerHTML = genzai
         if (genzai.startsWith(v)) {
-            document.body.style.background = "white"
+            body.style.backgroundImage = `url("./img/23583045.png")`
             mondai.innerHTML = genzai.replace(v, `<span>${v}</span>`)
         } else {
-            document.body.style.background = "red"
+            body.style.backgroundImage = `url("./img/23583228.png")`
         }
     }
 })
@@ -144,3 +145,11 @@ rand_btn.addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
     init()
 })
+
+window.onload = function () {
+    // プリロードする画像
+    let images = "./img/23583228.png"
+    // プリロード
+    let img = document.createElement('img')
+    img.src = images
+}
