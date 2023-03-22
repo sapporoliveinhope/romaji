@@ -8,7 +8,16 @@ const body = document.body
 let len, index, genzai, mode, startTime, completed
 let best_score = 0
 
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // 0 から i のランダムなインデックス
+        [array[i], array[j]] = [array[j], array[i]]; // 要素を入れ替えます
+    }
+}
+
 function init() {
+    shuffle(arr)
     completed = false
     len = arr.length
     index = Math.floor(Math.random() * len)
