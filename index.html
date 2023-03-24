@@ -5,7 +5,25 @@
     <meta charset="UTF-8">
     <title>ローマ字入力練習問題</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("./img/23583045.png");
+            background-size: 60%;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
+
         .container {
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
+            padding: 20px 0;
             text-align: center;
         }
 
@@ -14,8 +32,23 @@
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 80px;
             margin: 50px 0;
+        }
+
+        h2 {
+            width: 500px;
+            margin: 0 auto;
+            border-bottom: 1px black solid;
+            color: orange;
+            font-size: 36px;
+            font-weight: 700;
+            -webkit-text-stroke: 1px red;
+            text-stroke: 1px red;
+        }
+
+        p {
+            padding: 20px 0;
         }
 
         .color1 {
@@ -65,8 +98,8 @@
 </head>
 
 <body>
-    <div class="container my">
-        <h3>ローマ字入力練習問題(ver.20201008) <span id="qno"></span></h3>
+    <div class="container">
+        <h2>ローマ字入力練習問題(ver.20201008) <span id="qno"></span></h2>
 
         <p>
             入力した文字が合っていれば、Enterキー押下で次の問題が表示されます
@@ -85,12 +118,10 @@
         <button id="hint_btn">ヒント</button>
         <h4 class="my text-secondary" id="hint" style="display: none;"></h4>
 
-
         <p>
             <a href="./goethe.html">ゲーテの名言タイピング練習</a> |
             <a href="./meigen.html">色々な名言タイピング練習</a>
         </p>
-
     </div>
     <script>
         const qarr = [
@@ -381,20 +412,6 @@
             ["", "TWUNAITO", "トゥナイト"],
             ["", "DHUETTOSONNGU", "デュエットソング"],
             ["", "SWI-TOPI-", "スィートピー"],
-            ["おせわにになっております。", "OSEWANI NATTE ORIMASU.", "お世話になっております。"],
-            ["たいへんおせわになりました。", "TAIHENN OSEWANI NARIMASITA.", "大変お世話になりました。"],
-            ["こころよりおれいもうしあげます。", "KOKOROYORI OREI MOUSIAGEMASU.", "心よりお礼申し上げます。"],
-            ["おこころづかいにいちどうかんしゃもうしあげます。", "OKOKORODUKAINI ITIDOU KANSYA MOUSIAGEMASU", "お心遣いに一同感謝申し上げます"],
-            ["たいへんきょうしゅくですが", "TAIHENN KYOUSYUKUDESUGA", "大変恐縮ですが"],
-            ["ごたぼうちゅうのなか、きょうしゅくですが", "GOTABOUTYUUNONAKA,KYOUSYUKUDESUGA", "ご多忙の中、恐縮ですが"],
-            ["せいきゅうしょそうふのいらいについて", "SEIKYUUSYO SOUFUNO IRAINITUITE", "請求書送付の依頼について"],
-            ["ていねいなことばづかい", "TEINEINA KOTOBADUKAI", "丁寧な言葉遣いや"],
-            ["あいてをおもいやることば", "AITEWO OMOIYARU KOTOBA", "相手を思いやる言葉"],
-            ["もんだいはありません", "MONDAIHA ARIMASENN", "問題はありません。"],
-            ["しゃざいめーる", "SYAZAI ME-RU", "謝罪メール"],
-            ["すてるすねあげ", "SUTERUSU NEAGE", "ステルス値上げ"],
-            ["じこせきにんろん", "JIKOSEKININNRONN", "自己責任論"],
-            ["せっきょくざいせい", "SEKKYOKU ZAISEI", "積極財政"],
         ];
 
         // 練習

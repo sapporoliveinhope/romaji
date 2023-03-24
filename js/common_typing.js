@@ -27,6 +27,7 @@ function init() {
     startTime = Date.now()
     input.value = ""
     body.style.backgroundImage = `url("./img/23583045.png")`
+    body.style.backgroundColor = `white`
     input.focus()
 }
 
@@ -126,9 +127,11 @@ input.addEventListener('keyup', () => {
         mondai.innerHTML = genzai
         if (genzai.startsWith(v)) {
             body.style.backgroundImage = `url("./img/23583045.png")`
+            body.style.backgroundColor = `white`
             mondai.innerHTML = genzai.replace(v, `<span>${v}</span>`)
         } else {
             body.style.backgroundImage = `url("./img/23583228.png")`
+            body.style.backgroundColor = `red`
         }
     }
 })
